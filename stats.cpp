@@ -69,7 +69,6 @@ long stats::getSumSq(char channel, pair<int,int> ul, pair<int,int> lr){
 
 long stats::rectArea(pair<int,int> ul, pair<int,int> lr){
 
-// YOUR CODE HERE!!
     return (ul.first-lr.first)*(ul.second-lr.second);
 
 }
@@ -77,9 +76,11 @@ long stats::rectArea(pair<int,int> ul, pair<int,int> lr){
 // given a rectangle, compute its sum of squared deviations from mean, over all color channels.
 long stats::getScore(pair<int,int> ul, pair<int,int> lr){
 
-// YOUR CODE HERE!!
-
-
+    return (
+        (getSumSq('r',ul,lr) - ((getSum('r',ul,lr) * getSum('r',ul,lr)) / rectArea(ul, lr))) +
+        (getSumSq('b',ul,lr) - ((getSum('b',ul,lr) * getSum('b',ul,lr)) / rectArea(ul, lr))) +
+        (getSumSq('g',ul,lr) - ((getSum('g',ul,lr) * getSum('g',ul,lr)) / rectArea(ul, lr)))
+    );
 
 }
 		
