@@ -40,6 +40,8 @@ long stats::getSum(char channel, pair<int,int> ul, pair<int,int> lr){
                 case 'b':
                     rollingSum += (int)im.getPixel(x,y)->b;
                 break;
+                default:
+                    cout << "GETSUM BROKE" << endl;
             }
         }
     }
@@ -65,6 +67,8 @@ long stats::getSumSq(char channel, pair<int,int> ul, pair<int,int> lr){
                     case 'b':
                         rollingSum += ((int)im.getPixel(x,y)->b * (int)im.getPixel(x,y)->b);
                     break;
+                    default:
+                        cout << "GETSUMSQ BROKE" << endl;
                 }
             }
         }
@@ -76,10 +80,13 @@ long stats::getSumSq(char channel, pair<int,int> ul, pair<int,int> lr){
 }
 
 long stats::rectArea(pair<int,int> ul, pair<int,int> lr){
+    
+    #if debug
     cout<<"upper left x: "<<ul.first; 
     cout<<"upper left y: "<<ul.second; 
     cout<<"lower right x: "<<lr.first; 
-    cout<<"lower right y: "<<lr.second; 
+    cout<<"lower right y: "<<lr.second<<endl;
+    #endif
 
     return (lr.first+1-ul.first)*(lr.second+1-ul.second);
 
