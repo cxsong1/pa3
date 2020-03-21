@@ -4,16 +4,16 @@
 stats::stats(PNG & im){
 
     this->im = im;
-    pair origin(0,0);
+    pair<int,int> origin(0,0);
     for(int x = 0; x < im.width(); x++){
         for(int y = 0; y < im.height(); y++){
-            pair lr(x,y);
-            sumRed = getSum(r, origin, lr);
-            sumGreen = getSum(g, origin, lr);
-            sumBlue = getSum(b, origin, lr);
-            sumsqRed = getSumSq(r, origin, lr);
-            sumsqGreen = getSumSq(g, origin, lr);
-            sumsqBlue = getSumSq(b, origin, lr); 
+            pair<int,int> lr(x,y);
+            sumRed = getSum('r', origin, lr);
+            sumGreen = getSum('g', origin, lr);
+            sumBlue = getSum('b', origin, lr);
+            sumsqRed = getSumSq('r', origin, lr);
+            sumsqGreen = getSumSq('g', origin, lr);
+            sumsqBlue = getSumSq('b', origin, lr); 
         }
     }
 }
@@ -22,7 +22,7 @@ long stats::getSum(char channel, pair<int,int> ul, pair<int,int> lr){
 
     int rollingSum = 0;
     for(int x = ul.first; x < lr.first; x++){
-        for(int y = ul.second; y < lr.sencond; y++){
+        for(int y = ul.second; y < lr.second; y++){
             switch(channel){
                 case 'r':
                     rollingSum += (int)im.getPixel(x,y)->r;
@@ -43,7 +43,7 @@ long stats::getSumSq(char channel, pair<int,int> ul, pair<int,int> lr){
 
     int rollingSum = 0;
         for(int x = ul.first; x < lr.first; x++){
-            for(int y = ul.second; y < lr.sencond; y++){
+            for(int y = ul.second; y < lr.second; y++){
                 switch(channel){
                     case 'r':
                         rollingSum += ((int)im.getPixel(x,y)->r * (int)im.getPixel(x,y)->r);
