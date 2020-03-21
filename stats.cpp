@@ -76,8 +76,12 @@ long stats::getSumSq(char channel, pair<int,int> ul, pair<int,int> lr){
 }
 
 long stats::rectArea(pair<int,int> ul, pair<int,int> lr){
+    cout<<"upper left x: "<<ul.first; 
+    cout<<"upper left y: "<<ul.second; 
+    cout<<"lower right x: "<<lr.first; 
+    cout<<"lower right y: "<<lr.second; 
 
-    return (lr.first-ul.first)*(lr.second-ul.second);
+    return (lr.first+1-ul.first)*(lr.second+1-ul.second);
 
 }
 
