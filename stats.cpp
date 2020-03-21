@@ -24,13 +24,13 @@ long stats::getSum(char channel, pair<int,int> ul, pair<int,int> lr){
     for(int x = ul.first; x < lr.first; x++){
         for(int y = ul.second; y < lr.sencond; y++){
             switch(channel){
-                case r:
+                case 'r':
                     rollingSum += (int)im.getPixel(x,y)->r;
                 break;
-                case g:
+                case 'g':
                     rollingSum += (int)im.getPixel(x,y)->g;
                 break;
-                case b:
+                case 'b':
                     rollingSum += (int)im.getPixel(x,y)->b;
                 break;
             }
@@ -45,13 +45,13 @@ long stats::getSumSq(char channel, pair<int,int> ul, pair<int,int> lr){
         for(int x = ul.first; x < lr.first; x++){
             for(int y = ul.second; y < lr.sencond; y++){
                 switch(channel){
-                    case r:
+                    case 'r':
                         rollingSum += ((int)im.getPixel(x,y)->r * (int)im.getPixel(x,y)->r);
                     break;
-                    case g:
+                    case 'g':
                         rollingSum += ((int)im.getPixel(x,y)->g * (int)im.getPixel(x,y)->g);
                     break;
-                    case b:
+                    case 'b':
                         rollingSum += ((int)im.getPixel(x,y)->b * (int)im.getPixel(x,y)->b);
                     break;
                 }
