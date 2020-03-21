@@ -2,18 +2,24 @@
 #include "stats.h"
 
 stats::stats(PNG & im){
-
     this->im = im;
     pair<int,int> origin(0,0);
     for(int x = 0; x < im.width()-1; x++){
+        sumRed.push_back( vector<long>() );
+        sumGreen.push_back( vector<long>() );
+        sumBlue.push_back( vector<long>() );
+        sumsqRed.push_back( vector<long>() );
+        sumsqGreen.push_back( vector<long>() );
+        sumsqBlue.push_back( vector<long>() );
         for(int y = 0; y < im.height()-1; y++){
+
             pair<int,int> lr(x,y);
-            sumRed[x][y] = getSum('r', origin, lr);
-            sumGreen[x][y] = getSum('g', origin, lr);
-            sumBlue[x][y] = getSum('b', origin, lr);
-            sumsqRed[x][y] = getSumSq('r', origin, lr);
-            sumsqGreen[x][y] = getSumSq('g', origin, lr);
-            sumsqBlue[x][y] = getSumSq('b', origin, lr); 
+            sumRed[x].push_back( getSum('r', origin, lr) );
+            sumGreen[x].push_back( getSum('g', origin, lr) );
+            sumBlue[x].push_back( getSum('b', origin, lr) );
+            sumsqRed[x].push_back( getSumSq('r', origin, lr) );
+            sumsqGreen[x].push_back( getSumSq('g', origin, lr) );
+            sumsqBlue[x].push_back( getSumSq('b', origin, lr) ); 
         }
     }
 }
