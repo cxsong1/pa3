@@ -5,8 +5,8 @@ stats::stats(PNG & im){
 
     this->im = im;
     pair<int,int> origin(0,0);
-    for(int x = 0; x < im.width(); x++){
-        for(int y = 0; y < im.height(); y++){
+    for(int x = 0; x < im.width()-1; x++){
+        for(int y = 0; y < im.height()-1; y++){
             pair<int,int> lr(x,y);
             sumRed[x][y] = getSum('r', origin, lr);
             sumGreen[x][y] = getSum('g', origin, lr);
@@ -73,10 +73,16 @@ long stats::getScore(pair<int,int> ul, pair<int,int> lr){
 
 // YOUR CODE HERE!!
 
+
+
 }
 		
 RGBAPixel stats::getAvg(pair<int,int> ul, pair<int,int> lr){
 
 // YOUR CODE HERE!!
-
+    return RGBAPixel(
+        getSum('r',ul,lr)/rectArea(ul,lr),
+        getSum('g',ul,lr)/rectArea(ul,lr),
+        getSum('b',ul,lr)/rectArea(ul,lr)
+    );
 }
