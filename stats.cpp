@@ -5,14 +5,14 @@
 stats::stats(PNG & im){
     this->im = im;
     pair<int,int> origin(0,0);
-    for(int x = 0; x < im.width()-1; x++){
+    for(unsigned int x = 0; x < im.width()-1; x++){
         sumRed.push_back( vector<long>() );
         sumGreen.push_back( vector<long>() );
         sumBlue.push_back( vector<long>() );
         sumsqRed.push_back( vector<long>() );
         sumsqGreen.push_back( vector<long>() );
         sumsqBlue.push_back( vector<long>() );
-        for(int y = 0; y < im.height()-1; y++){
+        for(unsigned int y = 0; y < im.height()-1; y++){
 
             pair<int,int> lr(x,y);
             sumRed[x].push_back( getSum('r', origin, lr) );
@@ -77,15 +77,12 @@ long stats::getSumSq(char channel, pair<int,int> ul, pair<int,int> lr){
 
 long stats::rectArea(pair<int,int> ul, pair<int,int> lr){
 
-    #if DEBUG
-        cout << "rectArea: " << (ul.first-lr.first)*(ul.second-lr.second) << endl;
-    #endif
     return (ul.first-lr.first)*(ul.second-lr.second);
 
 }
 
 // given a rectangle, compute its sum of squared deviations from mean, over all color channels.
-long stats::getScore(pair<int,int> ul, pair<int,int> lr){
+long stats::getSScore(pair<int,int> ul, pair<int,int> lr){
 
     #if DEBUG
         cout << "getScore: " << (getSumSq('r',ul,lr) - ((getSum('r',ul,lr) * getSum('r',ul,lr)) / rectArea(ul, lr))) +
