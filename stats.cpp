@@ -8,12 +8,12 @@ stats::stats(PNG & im){
     for(int x = 0; x < im.width(); x++){
         for(int y = 0; y < im.height(); y++){
             pair<int,int> lr(x,y);
-            sumRed = getSum('r', origin, lr);
-            sumGreen = getSum('g', origin, lr);
-            sumBlue = getSum('b', origin, lr);
-            sumsqRed = getSumSq('r', origin, lr);
-            sumsqGreen = getSumSq('g', origin, lr);
-            sumsqBlue = getSumSq('b', origin, lr); 
+            sumRed[x][y] = getSum('r', origin, lr);
+            sumGreen[x][y] = getSum('g', origin, lr);
+            sumBlue[x][y] = getSum('b', origin, lr);
+            sumsqRed[x][y] = getSumSq('r', origin, lr);
+            sumsqGreen[x][y] = getSumSq('g', origin, lr);
+            sumsqBlue[x][y] = getSumSq('b', origin, lr); 
         }
     }
 }
@@ -36,12 +36,13 @@ long stats::getSum(char channel, pair<int,int> ul, pair<int,int> lr){
             }
         }
     }
+    return rollingSum;
 
 }
 
 long stats::getSumSq(char channel, pair<int,int> ul, pair<int,int> lr){
 
-    int rollingSum = 0;
+    long rollingSum = 0;
         for(int x = ul.first; x < lr.first; x++){
             for(int y = ul.second; y < lr.second; y++){
                 switch(channel){
@@ -57,12 +58,13 @@ long stats::getSumSq(char channel, pair<int,int> ul, pair<int,int> lr){
                 }
             }
         }
-
+    return rollingSum; 
 }
 
 long stats::rectArea(pair<int,int> ul, pair<int,int> lr){
 
 // YOUR CODE HERE!!
+    return (ul.first-lr.first)*(ul.second-lr.second);
 
 }
 
