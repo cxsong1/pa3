@@ -3,7 +3,7 @@
 #define DEBUG 1
 
 stats::stats(PNG & im){
-
+    
     for(unsigned int x = 0; x < im.width()-1; x++){
         sumRed.push_back( vector<long>() );
         sumGreen.push_back( vector<long>() );
@@ -12,7 +12,9 @@ stats::stats(PNG & im){
         sumsqGreen.push_back( vector<long>() );
         sumsqBlue.push_back( vector<long>() );
         for(unsigned int y = 0; y < im.height()-1; y++){
-
+            #if DEBUG
+                cout << "constructor: " << x << " " << y << endl;
+            #endif
             pair<int,int> lr(x,y);
 
             sumRed[x].push_back (y == 0 ? 0 : sumRed[x][y-1]);
