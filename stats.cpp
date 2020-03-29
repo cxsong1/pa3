@@ -3,16 +3,17 @@
 #define DEBUG 1
 
 stats::stats(PNG & im){
-    this->im = im;
+    img = im;
+
     pair<int,int> origin(0,0);
-    for(unsigned int x = 0; x < im.width()-1; x++){
+    for(unsigned int x = 0; x < img.width()-1; x++){
         sumRed.push_back( vector<long>() );
         sumGreen.push_back( vector<long>() );
         sumBlue.push_back( vector<long>() );
         sumsqRed.push_back( vector<long>() );
         sumsqGreen.push_back( vector<long>() );
         sumsqBlue.push_back( vector<long>() );
-        for(unsigned int y = 0; y < im.height()-1; y++){
+        for(unsigned int y = 0; y < img.height()-1; y++){
 
             pair<int,int> lr(x,y);
             sumRed[x].push_back( getSum('r', origin, lr) );
@@ -21,6 +22,8 @@ stats::stats(PNG & im){
             sumsqRed[x].push_back( getSumSq('r', origin, lr) );
             sumsqGreen[x].push_back( getSumSq('g', origin, lr) );
             sumsqBlue[x].push_back( getSumSq('b', origin, lr) ); 
+
+            cout << "pixel value: " << img.getPixel(x,y)->r << " " <<img.getPixel(x,y)->g << " " << img.getPixel(x,y)->b<< endl;
         }
     }
 }
@@ -32,21 +35,21 @@ long stats::getSum(char channel, pair<int,int> ul, pair<int,int> lr){
         for(int y = ul.second; y < lr.second; y++){
             switch(channel){
                 case 'r':
-                    rollingSum += im.getPixel(x,y)->r;
+                    rollingSum += img.getPixel(x,y)->r;
                     #if DEBUG
-                        cout << "\trollingSum += " << im.getPixel(x,y)->r << endl;
+                        cout << "\trollingSum += " << img.getPixel(x,y)->r << endl;
                     #endif
                 break;
                 case 'g':
-                    rollingSum += im.getPixel(x,y)->g;
+                    rollingSum += img.getPixel(x,y)->g;
                     #if DEBUG
-                        cout << "\trollingSum += " << im.getPixel(x,y)->g << endl;
+                        cout << "\trollingSum += " << img.getPixel(x,y)->g << endl;
                     #endif
                 break;
                 case 'b':
-                    rollingSum += im.getPixel(x,y)->b;
+                    rollingSum += img.getPixel(x,y)->b;
                     #if DEBUG
-                        cout << "\trollingSum += " << im.getPixel(x,y)->b << endl;
+                        cout << "\trollingSum += " << img.getPixel(x,y)->b << endl;
                     #endif
                 break;
                 default:
@@ -68,13 +71,13 @@ long stats::getSumSq(char channel, pair<int,int> ul, pair<int,int> lr){
             for(int y = ul.second; y < lr.second; y++){
                 switch(channel){
                     case 'r':
-                        rollingSum += (im.getPixel(x,y)->r * im.getPixel(x,y)->r);
+                        rollingSum += (img.getPixel(x,y)->r * img.getPixel(x,y)->r);
                     break;
                     case 'g':
-                        rollingSum += (im.getPixel(x,y)->g * im.getPixel(x,y)->g);
+                        rollingSum += (img.getPixel(x,y)->g * img.getPixel(x,y)->g);
                     break;
                     case 'b':
-                        rollingSum += (im.getPixel(x,y)->b * im.getPixel(x,y)->b);
+                        rollingSum += (img.getPixel(x,y)->b * img.getPixel(x,y)->b);
                     break;
                     default:
                         cout << "GETSUMSQ BROKE" << endl;
@@ -105,7 +108,7 @@ long stats::rectArea(pair<int,int> ul, pair<int,int> lr){
 long stats::getScore(pair<int,int> ul, pair<int,int> lr){
 
     #if DEBUG
-        cout << "getScore: " << (getSumSq('r',ul,lr) - ((getSum('r',ul,lr) * getSum('r',ul,lr)) / rectArea(ul, lr))) +
+        cout << "getScore: " << endl << (getSumSq('r',ul,lr) - ((getSum('r',ul,lr) * getSum('r',ul,lr)) / rectArea(ul, lr))) +
         (getSumSq('b',ul,lr) - ((getSum('b',ul,lr) * getSum('b',ul,lr)) / rectArea(ul, lr))) +
         (getSumSq('g',ul,lr) - ((getSum('g',ul,lr) * getSum('g',ul,lr)) / rectArea(ul, lr))) << endl;
     #endif
