@@ -15,7 +15,6 @@ stats::stats(PNG & im){
             #if DEBUG
                 cout << "constructor: " << x << " " << y << endl;
             #endif
-            pair<int,int> lr(x,y);
 
             sumRed[x].push_back (y == 0 ? 0 : sumRed[x][y-1]);
             sumRed[x][y] += x == 0 ? 0 : (sumRed[x-1][y] - (y == 0 ? 0 :sumRed[x-1][y-1]));
@@ -40,8 +39,6 @@ stats::stats(PNG & im){
             sumsqBlue[x].push_back (y == 0 ? 0 : sumsqBlue[x][y-1]);
             sumsqBlue[x][y] += x == 0 ? 0 : (sumsqBlue[x-1][y] - (y == 0 ? 0 :sumsqBlue[x-1][y-1]));
             sumsqBlue[x][y] += im.getPixel(x,y)->b * im.getPixel(x,y)->b;
-
-            cout << "pixel value: " << this->img.getPixel(x,y)->r << " " <<this->img.getPixel(x,y)->g << " " << this->img.getPixel(x,y)->b<< endl;
         }
     }
 }
