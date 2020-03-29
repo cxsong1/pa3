@@ -46,14 +46,30 @@ stats::stats(PNG & im){
 long stats::getSum(char channel, pair<int,int> ul, pair<int,int> lr){
 
     switch(channel){
+        //pair<int, int> pair(x,y); 
         case 'r':
-            return sumRed[lr.first][lr.second]-sumRed[lr.first][ul.second]-sumRed[ul.first][lr.second]+sumRed[ul.first][ul.second];
-        break;
+            return (
+                sumRed[lr.first][lr.second] - 
+                (ul.first == 0 ? 0 : sumRed[ul.first-1][lr.second]) - 
+                (ul.second == 0 ? 0 : sumRed[lr.first][ul.second-1]) +
+                (ul.first == 0 || ul.second == 0 ? 0 : sumRed[ul.first-1][ul.second-1])
+            );
+            break;
         case 'g':
-            return sumGreen[lr.first][lr.second] -sumGreen[lr.first][ul.second] - sumGreen[ul.first][lr.second] + sumGreen[ul.first][ul.second]; 
+            return (
+                sumGreen[lr.first][lr.second] - 
+                (ul.first == 0 ? 0 : sumGreen[ul.first-1][lr.second]) - 
+                (ul.second == 0 ? 0 : sumGreen[lr.first][ul.second-1]) +
+                (ul.first == 0 || ul.second == 0 ? 0 : sumGreen[ul.first-1][ul.second-1])
+            );
         break;
         case 'b':
-            return sumBlue[lr.first][lr.second]-sumBlue[lr.first][ul.second] - sumBlue[ul.first][lr.second] + sumBlue[ul.first][ul.second]; 
+            return (
+                sumBlue[lr.first][lr.second] - 
+                (ul.first == 0 ? 0 : sumBlue[ul.first-1][lr.second]) - 
+                (ul.second == 0 ? 0 : sumBlue[lr.first][ul.second-1]) +
+                (ul.first == 0 || ul.second == 0 ? 0 : sumBlue[ul.first-1][ul.second-1])
+            );
         break;
         default:
             cout << "GETSUM BROKEN" <<endl;
@@ -67,13 +83,28 @@ long stats::getSumSq(char channel, pair<int,int> ul, pair<int,int> lr){
 
     switch(channel){
         case 'r':
-            return sumsqRed[lr.first][lr.second]-sumsqRed[lr.first][ul.second]-sumsqRed[ul.first][lr.second]+sumsqRed[ul.first][ul.second];
-        break;
+            return (
+                sumsqRed[lr.first][lr.second] - 
+                (ul.first == 0 ? 0 : sumsqRed[ul.first-1][lr.second]) - 
+                (ul.second == 0 ? 0 : sumsqRed[lr.first][ul.second-1]) +
+                (ul.first == 0 || ul.second == 0 ? 0 : sumsqRed[ul.first-1][ul.second-1])
+            );
+            break;
         case 'g':
-            return sumsqGreen[lr.first][lr.second] -sumsqGreen[lr.first][ul.second] - sumsqGreen[ul.first][lr.second] + sumsqGreen[ul.first][ul.second]; 
+            return (
+                sumsqGreen[lr.first][lr.second] - 
+                (ul.first == 0 ? 0 : sumsqGreen[ul.first-1][lr.second]) - 
+                (ul.second == 0 ? 0 : sumsqGreen[lr.first][ul.second-1]) +
+                (ul.first == 0 || ul.second == 0 ? 0 : sumsqGreen[ul.first-1][ul.second-1])
+            );
         break;
         case 'b':
-            return sumsqBlue[lr.first][lr.second]-sumsqBlue[lr.first][ul.second] - sumsqBlue[ul.first][lr.second] + sumsqBlue[ul.first][ul.second]; 
+            return (
+                sumsqBlue[lr.first][lr.second] - 
+                (ul.first == 0 ? 0 : sumsqBlue[ul.first-1][lr.second]) - 
+                (ul.second == 0 ? 0 : sumsqBlue[lr.first][ul.second-1]) +
+                (ul.first == 0 || ul.second == 0 ? 0 : sumsqBlue[ul.first-1][ul.second-1])
+            );
         break;
         default:
             cout << "GETSUMSQ BROKEN" <<endl;
