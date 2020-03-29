@@ -18,9 +18,11 @@ private:
 	vector< vector< long >> sumsqRed;
 	vector< vector< long >> sumsqGreen;
 	vector< vector< long >> sumsqBlue;
+	PNG im;
 
 	/* returns the sums of all pixel values across all color channels.
-	* useful in computing the score of a rectangle
+	* useful in comp
+	uting the score of a rectangle
 	* PA3 function
 	* @param channel is one of r, g, or b
 	* @param ul is (x,y) of the upper left corner of the rectangle 
