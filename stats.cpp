@@ -33,12 +33,21 @@ long stats::getSum(char channel, pair<int,int> ul, pair<int,int> lr){
             switch(channel){
                 case 'r':
                     rollingSum += im.getPixel(x,y)->r;
+                    #if DEBUG
+                        cout << "\trollingSum += " << im.getPixel(x,y)->r << endl;
+                    #endif
                 break;
                 case 'g':
                     rollingSum += im.getPixel(x,y)->g;
+                    #if DEBUG
+                        cout << "\trollingSum += " << im.getPixel(x,y)->g << endl;
+                    #endif
                 break;
                 case 'b':
                     rollingSum += im.getPixel(x,y)->b;
+                    #if DEBUG
+                        cout << "\trollingSum += " << im.getPixel(x,y)->b << endl;
+                    #endif
                 break;
                 default:
                     cout << "GETSUM BROKE" << endl;
