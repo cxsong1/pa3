@@ -4,14 +4,14 @@
 
 stats::stats(PNG & im){
     
-    for(unsigned int x = 0; x < im.width()-1; x++){
+    for(unsigned int x = 0; x < im.width(); x++){
         sumRed.push_back( vector<long>() );
         sumGreen.push_back( vector<long>() );
         sumBlue.push_back( vector<long>() );
         sumsqRed.push_back( vector<long>() );
         sumsqGreen.push_back( vector<long>() );
         sumsqBlue.push_back( vector<long>() );
-        for(unsigned int y = 0; y < im.height()-1; y++){
+        for(unsigned int y = 0; y < im.height(); y++){
             #if DEBUG
                 cout << "constructor: " << x << " " << y << endl;
             #endif
