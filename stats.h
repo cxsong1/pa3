@@ -18,7 +18,6 @@ private:
 	vector< vector< long >> sumsqRed;
 	vector< vector< long >> sumsqGreen;
 	vector< vector< long >> sumsqBlue;
-	PNG im;
 
 	/* returns the sums of all pixel values across all color channels.
 	* useful in comp
