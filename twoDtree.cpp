@@ -50,6 +50,12 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 	if (ul.first == lr.first && ul.second == lr.second){
 		returnNode->left = NULL;
 		returnNode->right = NULL;
+		#if DEBUG
+			cout << "(" << ul.first << "," << ul.second << ") : " << endl <<
+			"\t|r:" << (int)returnNode->avg.r << "| g:" << (int)returnNode->avg.g <<
+			"| b:" << (int)returnNode->avg.b << "| a:" << (int)returnNode->avg.a << endl;
+			
+		#endif
 		return returnNode;
 	}
 
@@ -69,7 +75,7 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 		//assign subtrees
 		returnNode->left = buildTree(s, ul, pair<int, int>(minVarSplit,lr.second), !vert);
 		returnNode->right = buildTree(s, pair<int, int>(minVarSplit+1, ul.second), lr, !vert);
-				
+		
 		return returnNode;
 	
 	} else if (!vert || (ul.first == ul.first) ){
