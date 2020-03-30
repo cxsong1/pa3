@@ -44,7 +44,7 @@ twoDtree::twoDtree(PNG & imIn){
 }
 
 twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> lr, bool vert) {
-	cout <<"ul : lr -- "<<ul.first<< "." <<ul.second<<" : "<<lr.first<<"."<<lr.second<<endl; 
+	cout <<"ul : lr -- "<<ul.first<< "." <<ul.second<<" : "<<lr.first<<"."<<lr.second<< " -- vert: " << vert << endl; 
 	Node * returnNode = new Node(ul, lr, s.getAvg(ul,lr));
 
 	if (ul.first == lr.first && ul.second == lr.second){
