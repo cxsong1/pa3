@@ -163,8 +163,18 @@ void twoDtree::clearRecursive(Node* node){
 
 void twoDtree::copy(const twoDtree & orig){
 
-// YOUR CODE HERE!!
+	copyRecursive(root, orig.root); 
+	return; 
+}
 
+void twoDtree::copyRecursive(Node * this, const Node * other){
+	if (other != NULL){
+		this = new Node;
+		*this = *other
+		copyRecursive(this->left, other->left);
+		copyRecursive(this->right, other->right); 
+	}
+	return;	
 }
 
 
