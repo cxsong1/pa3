@@ -63,14 +63,14 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 							s.getScore(pair<int, int> (i+1, ul.second), lr));
 				minVarSplit = i;
 
-				//assign subtrees
-
-				returnNode->left = buildTree(s, ul, pair<int, int>(i,lr.second), !vert);
-				returnNode->right = buildTree(s, pair<int, int>(i+1, ul.second), lr, !vert);
 				
-				return returnNode;
 			}
 		}
+		//assign subtrees
+		returnNode->left = buildTree(s, ul, pair<int, int>(minVarSplit,lr.second), !vert);
+		returnNode->right = buildTree(s, pair<int, int>(minVarSplit+1, ul.second), lr, !vert);
+				
+		return returnNode;
 	
 	} else if (!vert || (ul.first == ul.first) ){
 		for(int i = ul.second; i < lr.second-1; i++){
@@ -81,13 +81,14 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 							s.getScore(pair<int,int>(ul.first, i + 1), lr));
 				minVarSplit = i; 
 				
-				//assign subtrees 
-				returnNode->left = buildTree(s, ul, pair<int,int>(lr.first, i), !vert); 
-				returnNode->right = buildTree(s, pair<int,int>(ul.first, i+1), lr, !vert); 
-
-				return returnNode; 
+				
 			}
 		}
+		//assign subtrees 
+		returnNode->left = buildTree(s, ul, pair<int,int>(lr.first, minVarSplit), !vert); 
+		returnNode->right = buildTree(s, pair<int,int>(ul.first, minVarSplit+1), lr, !vert); 
+
+		return returnNode; 
 	}else{
 		cout << "buildTree: nope." << endl;
 		return NULL;
