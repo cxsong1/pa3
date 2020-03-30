@@ -66,8 +66,8 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 			}
 		}
 		//assign subtrees
-		returnNode->left = buildTree(s, ul, pair<int, int>(ul.first + minVarSplit,lr.second), !vert);
-		returnNode->right = buildTree(s, pair<int, int>(ul.first + minVarSplit+1, ul.second), lr, !vert);
+		returnNode->left = buildTree(s, ul, pair<int, int>(minVarSplit,lr.second), !vert);
+		returnNode->right = buildTree(s, pair<int, int>(minVarSplit+1, ul.second), lr, !vert);
 				
 		return returnNode;
 	
@@ -82,8 +82,8 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 			}
 		}
 		//assign subtrees 
-		returnNode->left = buildTree(s, ul, pair<int,int>(lr.first, ul.second + minVarSplit), !vert); 
-		returnNode->right = buildTree(s, pair<int,int>(ul.first, ul.second + minVarSplit+1), lr, !vert); 
+		returnNode->left = buildTree(s, ul, pair<int,int>(lr.first,minVarSplit), !vert); 
+		returnNode->right = buildTree(s, pair<int,int>(ul.first,minVarSplit+1), lr, !vert); 
 
 		return returnNode; 
 	}else{
