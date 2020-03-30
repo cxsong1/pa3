@@ -214,6 +214,17 @@ private:
    */
    void copy(const twoDtree & other);
 
+
+   /**
+    * Recursive helper function for copy() function that copies
+    * all nodes under 'other' into nodes under 'this'
+    * 
+    * @param this root of destination tree
+    * @param other root of source tree
+    */
+   void copyRecursive(Node * this, const Node * other);
+
+
    /**
    * Private helper function for the constructor. Recursively builds
    * the tree according to the specification of the constructor.
