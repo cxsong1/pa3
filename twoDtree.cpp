@@ -107,7 +107,7 @@ PNG twoDtree::render(){
 	return returnPic; 
 }
 
-void twoDtree::renderRecursive(PNG pic, Node * node){
+void twoDtree::renderRecursive(PNG &pic, Node * node){
 	if (node->left == NULL && node->right == NULL){
 		for(int x = node->upLeft.first; x <= node->lowRight.first; x++){
 			for(int y = node->upLeft.second; y <= node->lowRight.second; y++){
