@@ -50,12 +50,12 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 	if (ul.first == lr.first && ul.second == lr.second){
 		returnNode->left = NULL;
 		returnNode->right = NULL;
-		#if DEBUG
+		/*#if DEBUG
 			cout << "(" << ul.first << "," << ul.second << ") : " << endl <<
 			"\t|r:" << (int)returnNode->avg.r << "| g:" << (int)returnNode->avg.g <<
 			"| b:" << (int)returnNode->avg.b << "| a:" << (int)returnNode->avg.a << endl;
 			
-		#endif
+		#endif*/
 		return returnNode;
 	}
 
@@ -112,6 +112,9 @@ void twoDtree::renderRecursive(PNG pic, Node * node){
 		for(int x = node->upLeft.first; x <= node->lowRight.first; x++){
 			for(int y = node->upLeft.second; y <= node->lowRight.second; y++){
 				*pic.getPixel(x,y) = node->avg;
+				#if DEBUG 
+					cout<<"red: "<< (int)node->avg.r << " green: " << (int)node->avg.g << " blue: "<< (int)node->avg.b <<endl; 
+				#endif
 			}
 		}
 	}
