@@ -170,11 +170,10 @@ void twoDtree::copy(const twoDtree & orig){
 void twoDtree::copyRecursive(Node * this, const Node * other){
 	if (other != NULL){
 		this = new Node;
-		*this = *other
+		*this = *other;
 		copyRecursive(this->left, other->left);
 		copyRecursive(this->right, other->right); 
 	}
-	return;	
 }
 
 
