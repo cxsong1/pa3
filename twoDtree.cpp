@@ -55,15 +55,13 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 	long minVar = INT_MAX;
 	int minVarSplit = 0;
 	if(vert || (ul.second == lr.second) ){
-		for(int i = ul.first; i < lr.first-1; i++){
+		for(int i = ul.first; i < lr.first; i++){
 			if( abs(s.getScore(ul, pair<int,int>(i,lr.second)) - 
 					s.getScore(pair<int, int> (i+1, ul.second), lr)) < minVar){
 						
 				minVar = abs(s.getScore(ul, pair<int,int>(i,lr.second)) - 
 							s.getScore(pair<int, int> (i+1, ul.second), lr));
-				minVarSplit = i;
-
-				
+				minVarSplit = i;				
 			}
 		}
 		//assign subtrees
@@ -73,15 +71,13 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 		return returnNode;
 	
 	} else if (!vert || (ul.first == ul.first) ){
-		for(int i = ul.second; i < lr.second-1; i++){
+		for(int i = ul.second; i < lr.second; i++){
 			if( abs(s.getScore(ul, pair<int,int>(lr.first, i)) - 
 					s.getScore(pair<int,int>(ul.first, i + 1), lr)) < 0){
 				
 				minVar = abs(s.getScore(ul, pair<int,int>(lr.first, i)) - 
 							s.getScore(pair<int,int>(ul.first, i + 1), lr));
 				minVarSplit = i; 
-				
-				
 			}
 		}
 		//assign subtrees 
