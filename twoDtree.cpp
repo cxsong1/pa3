@@ -74,7 +74,7 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 	} else if (!vert || (ul.first == ul.first) ){
 		for(int i = ul.second; i < lr.second; i++){
 			if( abs(s.getScore(ul, pair<int,int>(lr.first, i)) - 
-					s.getScore(pair<int,int>(ul.first, i + 1), lr)) < 0){
+					s.getScore(pair<int,int>(ul.first, i + 1), lr)) < minVar){
 				
 				minVar = abs(s.getScore(ul, pair<int,int>(lr.first, i)) - 
 							s.getScore(pair<int,int>(ul.first, i + 1), lr));
@@ -124,8 +124,17 @@ void twoDtree::prune(int tol){
 
 void twoDtree::clear() {
 
-// YOUR CODE HERE!!
+	clearRecursive(root);
+}
 
+void twoDtree::clearRecursive(Node* node){
+
+	if (node == NULL) return;
+	
+	clearRecursive(node->left);
+	clearRecursive(node->right);
+	delete node;
+	return;
 }
 
 void twoDtree::copy(const twoDtree & orig){

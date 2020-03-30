@@ -186,6 +186,14 @@ private:
    void clear();
 
    /**
+    * Recursive helper function for clear() function that destroys all
+    * nodes under 'node'.
+    * 
+    * @param node the root of the tree to be deallocated
+    */
+   void clearRecursive(Node* node);
+
+   /**
    * Copies the parameter other twoDtree into the current twoDtree.
    * Does not free any memory. Called by copy constructor and op=.
    * You may want a recursive helper function for this one.
