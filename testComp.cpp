@@ -67,11 +67,8 @@ TEST_CASE("stats::basic variance","[weight=1][part=stats]"){
 }
 
 TEST_CASE("twoDtree::basic ctor render","[weight=1][part=twoDtree]"){
-    cout<<"hi"<<endl;
     PNG img;
-    cout<<"hi"<<endl;
     img.readFromFile("images/geo.png");
-    cout<<"hi"<<endl;
     twoDtree t1(img);
     cout<<"hi"<<endl;
 
