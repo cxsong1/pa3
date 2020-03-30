@@ -9,7 +9,7 @@
  */
 
 #include "twoDtree.h"
-#define DEBUG 1
+#define DEBUG 0
 
 // Node constructor, given.
 twoDtree::Node::Node(pair<int,int> ul, pair<int,int> lr, RGBAPixel a)
