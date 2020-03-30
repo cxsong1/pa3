@@ -70,9 +70,8 @@ TEST_CASE("twoDtree::basic ctor render","[weight=1][part=twoDtree]"){
     PNG img;
     img.readFromFile("images/geo.png");
     twoDtree t1(img);
-    cout<<"hi"<<endl;
-
     PNG out = t1.render();
+    out.writeToFile("testImages/geo_out.png");
     cout<<"hi"<<endl;
     REQUIRE(out==img);
 }
