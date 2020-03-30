@@ -164,6 +164,9 @@ public:
    /* =============== end of public PA3 FUNCTIONS =========================*/
 
 private:
+
+
+
    /*
     * Private member variables.
     *
@@ -177,6 +180,16 @@ private:
    int width; // width of PNG represented by the tree
 
    /* =================== private PA3 functions ============== */
+
+
+   /**
+    * Recursive helper function for render() function that renders
+    * all nodes under 'node' into pic
+    * 
+    * @param pic: the destination PNG of the render
+    * @param node: the root of the tree to start rendering at
+    */
+   void renderRecursive(PNG pic, Node * node);
 
    /**
     * Destroys all dynamically allocated memory associated with the

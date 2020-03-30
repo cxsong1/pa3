@@ -55,6 +55,7 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 
 	long minVar = INT_MAX;
 	int minVarSplit = 0;
+	int minVarSize = 0;
 	if((vert && ul.first != lr.first) || (ul.second == lr.second) ){
 		for(int i = ul.first; i < lr.first; i++){
 			if( abs(s.getScore(ul, pair<int,int>(i,lr.second)) - 
@@ -62,7 +63,7 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 						
 				minVar = abs(s.getScore(ul, pair<int,int>(i,lr.second)) - 
 							s.getScore(pair<int, int> (i+1, ul.second), lr));
-				minVarSplit = i;				
+				minVarSplit = i;
 			}
 		}
 		//assign subtrees
@@ -96,12 +97,22 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 
 PNG twoDtree::render(){
 	PNG returnPic; returnPic.resize(width,height);
-	
-	
-	
-	
-// YOUR CODE HERE!!
+	renderRecursive(returnPic, root); 
+	return returnPic; 
+}
 
+void twoDtree::renderRecursive(PNG pic, Node * node){
+	if (node->left == NULL && node->right == NULL){
+		for(int x = node->upLeft.first; x <= node->lowRight.first; x++){
+			for(int y = node->upLeft.second; y <= node->lowRight.second; y++){
+				*pic.getPixel(x,y) = node->avg;
+			}
+		}
+	}
+	else{
+		renderRecursive(pic, node->left);
+		renderRecursive(pic, node->right); 
+	}
 }
 
 int twoDtree::idealPrune(int leaves){
