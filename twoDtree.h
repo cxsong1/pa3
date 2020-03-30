@@ -219,10 +219,10 @@ private:
     * Recursive helper function for copy() function that copies
     * all nodes under 'other' into nodes under 'this'
     * 
-    * @param this root of destination tree
+    * @param curr root of destination tree
     * @param other root of source tree
     */
-   void copyRecursive(Node * this, const Node * other);
+   void copyRecursive(Node * curr, const Node * other);
 
 
    /**
