@@ -189,7 +189,7 @@ private:
     * @param pic: the destination PNG of the render
     * @param node: the root of the tree to start rendering at
     */
-   void renderRecursive(PNG pic, Node * node);
+   void renderRecursive(PNG &pic, Node * node);
 
    /**
     * Destroys all dynamically allocated memory associated with the
