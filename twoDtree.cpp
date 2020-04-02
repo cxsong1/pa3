@@ -78,7 +78,7 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 		
 		return returnNode;
 	
-	} else if (!vert || (ul.first == ul.first) ){
+	} else if (!vert || (ul.first == lr.first) ){
 		for(int i = ul.second; i < lr.second; i++){
 			if( abs(s.getScore(ul, pair<int,int>(lr.first, i)) - 
 					s.getScore(pair<int,int>(ul.first, i + 1), lr)) < minVar){
@@ -163,7 +163,7 @@ void twoDtree::pruneRecursive(Node* node, int tol){
 bool twoDtree::checkTol(Node* node, RGBAPixel avg, int tol){
 	if (node->left == NULL && node->right == NULL){
 		return (
-			(node->avg.r-avg.r)*(node->avg.r-avg.r) + (node->avg.g-avg.g)*(node->avg.g-avg.g) + (node->avg.b-avg.b)*(node->avg.b-avg.b) < tol
+			(node->avg.r-avg.r)*(node->avg.r-avg.r) + (node->avg.g-avg.g)*(node->avg.g-avg.g) + (node->avg.b-avg.b)*(node->avg.b-avg.b) <= tol
 		);
 	} else { 
 		return (checkTol(node->left, avg, tol) && checkTol(node->right, avg, tol)); 
