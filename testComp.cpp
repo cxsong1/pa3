@@ -71,7 +71,7 @@ TEST_CASE("twoDtree::basic ctor render","[weight=1][part=twoDtree]"){
     img.readFromFile("images/geo.png");
     twoDtree t1(img);
     PNG out = t1.render();
-    out.writeToFile("images/geo_out.png");
+    out.writeToFile("images/ctor_out.png");
     REQUIRE(out==img);
 
     cout << "basic ctor render passed" << endl;
@@ -86,6 +86,7 @@ TEST_CASE("twoDtree::basic copy","[weight=1][part=twoDtree]"){
     twoDtree t1copy(t1);
 
     PNG out = t1copy.render();
+    out.writeToFile("images/copy_out.png");
 
     REQUIRE(out==img);
 

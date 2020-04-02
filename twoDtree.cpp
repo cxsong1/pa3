@@ -9,7 +9,7 @@
  */
 
 #include "twoDtree.h"
-#define DEBUG 0
+#define DEBUG 1
 
 // Node constructor, given.
 twoDtree::Node::Node(pair<int,int> ul, pair<int,int> lr, RGBAPixel a)
@@ -117,7 +117,7 @@ void twoDtree::renderRecursive(PNG &pic, Node * node){
 			for(int y = node->upLeft.second; y <= node->lowRight.second; y++){
 				*pic.getPixel(x,y) = node->avg;
 				#if DEBUG 
-					cout<<"red: "<< (int)node->avg.r << " green: " << (int)node->avg.g << " blue: "<< (int)node->avg.b <<endl; 
+					cout << "(" << x << "," << y <<"): | red: "<< (int)node->avg.r << " | green: " << (int)node->avg.g << " | blue: "<< (int)node->avg.b << " |" <<endl; 
 				#endif
 			}
 		}
@@ -126,7 +126,7 @@ void twoDtree::renderRecursive(PNG &pic, Node * node){
 		renderRecursive(pic, node->left);
 		renderRecursive(pic, node->right); 
 	}
-}
+}d
 
 int twoDtree::idealPrune(int leaves){
 
