@@ -140,10 +140,6 @@ public:
     */
    void prune(int tol);
 
-   
-
-
-
    /*
     * The pruneSize function takes a tolerance as input, and returns
     * the number of leaves that would result _if_ the tree were to 

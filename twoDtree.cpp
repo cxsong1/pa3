@@ -163,7 +163,7 @@ void twoDtree::pruneRecursive(Node* node, int tol){
 bool twoDtree::checkTol(Node* node, RGBAPixel avg, int tol){
 	if (node->left == NULL && node->right == NULL){
 		return (
-			(node->avg.r-avg.r)*(node->avg.r-avg.r) + (node->avg.g-avg.g)*(node->avg.g-avg.g) + (node->avg.b-avg.b)*(node->avg.b-avg.b) <= tol
+			(node->avg.r-avg.r)*(node->avg.r-avg.r) + (node->avg.g-avg.g)*(node->avg.g-avg.g) + (node->avg.b-avg.b)*(node->avg.b-avg.b) < tol
 		);
 	} else { 
 		return (checkTol(node->left, avg, tol) && checkTol(node->right, avg, tol)); 
