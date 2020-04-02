@@ -131,12 +131,12 @@ int twoDtree::idealPrune(int leaves){
 }
 
 int twoDtree::idealPruneRecursive(int leaves, int min, int max){
-	cout<<"tolerance: "<<((min+max)/2)<<endl;
-	if(pruneSize((min+max)/2) == leaves){
+	cout << "tolerance: " << ((min+max)/2) << endl;
+	if(pruneSize((min + max)/2) == leaves){
 		return (min + max) / 2;
-	}else if (pruneSize((min + max) / 2) > leaves){
-		return idealPruneRecursive(leaves, min, ((min + max) / 2));
 	}else if (pruneSize((min + max) / 2) < leaves){
+		return idealPruneRecursive(leaves, min, ((min + max) / 2));
+	}else if (pruneSize((min + max) / 2) > leaves){
 		return idealPruneRecursive(leaves, ((min + max) / 2), max);
 	}
 }
