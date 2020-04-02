@@ -131,10 +131,11 @@ int twoDtree::idealPrune(int leaves){
 	int currNum;
 	
 	while(currTol > 0 && currTol < 255*255*3+1){
+		cout<<"currTol: "<<currTol<<endl;
 		currNum = pruneSize(currTol);
 		if (currNum == leaves) return currTol;
 		else{
-			currTol = (currNum < leaves) ? (currTol / 2) : (currTol * 2);
+			currTol = (currNum < leaves) ? (currTol / 2) : (currTol * 1.5);
 		}
 	}
 	cout << "LMAO NOT POSSIBLE" << endl;
