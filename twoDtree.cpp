@@ -9,7 +9,7 @@
  */
 
 #include "twoDtree.h"
-#define DEBUG 1
+#define DEBUG 0
 
 // Node constructor, given.
 twoDtree::Node::Node(pair<int,int> ul, pair<int,int> lr, RGBAPixel a)
@@ -140,8 +140,34 @@ int twoDtree::pruneSize(int tol){
 }
 
 void twoDtree::prune(int tol){
-
+	pruneRecursive(root);
 // YOUR CODE HERE!!
+
+}
+
+void twoDtree::pruneRecursive(Node* node, int tol){
+	if (node == NULL || (node->right == NULL && node->left == NULL) ) return;
+	if (checkTol(node, node->avg, tol)){
+		clear(node->left);
+		clear(node->right);
+		node->left = NULL;
+		node->right = NULL;
+		return;
+	} else {
+		pruneRecursive(node->left);
+		pruneRecursive(node->right);
+	}
+
+}
+
+bool twoDtree::checkTol(Node* node, RGBAPixel avg, int tol){
+	if (node->left == NULL && node->right == NULL){
+		return (
+			(node->avg.r-avg.r)*(node->avg.r-avg.r) + (node->avg.g-avg.g)*(node->avg.g-avg.g) + (node->avg.b-avg.b)*(node->avg.b-avg.b) <= tol
+		);
+	} else { 
+		return (checkTol(node->left, avg, tol) && checkTol(node->right, avg, tol)); 
+	}
 
 }
 

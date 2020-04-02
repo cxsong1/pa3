@@ -140,6 +140,10 @@ public:
     */
    void prune(int tol);
 
+   
+
+
+
    /*
     * The pruneSize function takes a tolerance as input, and returns
     * the number of leaves that would result _if_ the tree were to 
@@ -181,6 +185,14 @@ private:
 
    /* =================== private PA3 functions ============== */
 
+
+   /**
+    * First recursive helper function for prune.
+    * 
+    */
+   void twoDtree::pruneRecursive(Node* node, int tol);
+
+   bool twoDtree::checkTol(Node* node, RGBAPixel avg, int tol){
 
    /**
     * Recursive helper function for render() function that renders
