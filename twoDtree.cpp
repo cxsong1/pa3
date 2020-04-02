@@ -162,22 +162,22 @@ void twoDtree::clearRecursive(Node* node){
 }
 
 void twoDtree::copy(const twoDtree & orig){
-	copyRecursive(root, orig.root); 
+	copyRecursive(&root, orig.root); 
 	return; 
 }
 
-void twoDtree::copyRecursive(Node &*curr, const Node * other){
+void twoDtree::copyRecursive(Node **curr, const Node * other){
 	if (other != NULL){
-		curr = new Node(other->upLeft, other->lowRight, other->avg);
+		*curr = new Node(other->upLeft, other->lowRight, other->avg);
 
 		if(other->left != NULL){
-			copyRecursive(curr->left, other->left);
+			copyRecursive(&curr->left, other->left);
 		} else {
 			curr->left = NULL;
 		}
 		
 		if(other->right != NULL){
-			copyRecursive(curr->right, other->right); 
+			copyRecursive(&curr->right, other->right); 
 		} else {
 			curr->right = NULL;
 		}

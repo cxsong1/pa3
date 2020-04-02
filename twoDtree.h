@@ -222,7 +222,7 @@ private:
     * @param curr root of destination tree
     * @param other root of source tree
     */
-   void copyRecursive(Node &*curr, const Node * other);
+   void copyRecursive(Node **curr, const Node * other);
 
 
    /**
