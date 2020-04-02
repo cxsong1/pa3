@@ -103,7 +103,7 @@ TEST_CASE("twoDtree::basic prune","[weight=1][part=twoDtree]"){
 
     PNG expected; 
     expected.readFromFile("images/given-adaPrune.png");
-    out.writeToFile(images/prune_out.png);
+    result.writeToFile(images/prune_out.png);
 
     REQUIRE(expected==result);
 
