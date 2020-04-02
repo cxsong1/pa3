@@ -108,10 +108,9 @@ PNG twoDtree::render(){
 }
 
 void twoDtree::renderRecursive(PNG &pic, Node * node){
-	if (node == NULL){
-		cout << "wtf" << endl;
-		return;
-	}
+	#if DEBUG 
+		cout<<"width: "<< (*pic).width() << " height: " << (*pic).height() << endl; 
+	#endif
 	if (node->left == NULL && node->right == NULL){
 		for(int x = node->upLeft.first; x <= node->lowRight.first; x++){
 			for(int y = node->upLeft.second; y <= node->lowRight.second; y++){
@@ -163,6 +162,8 @@ void twoDtree::clearRecursive(Node* node){
 
 void twoDtree::copy(const twoDtree & orig){
 	copyRecursive(&root, orig.root); 
+	height = orig.height;
+	width = orig.width;
 	return; 
 }
 
