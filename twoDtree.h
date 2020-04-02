@@ -187,11 +187,15 @@ private:
 
 
    /**
-    * First recursive helper function for prune.
-    * 
+    * First recursive helper function for prune. Calls checkTol 
+    * and clears the nodes that are within tolerance of current
+    * node's average. 
+    * @param node: the current node to check
+    * @param tol: the accepted tolerance
     */
    void twoDtree::pruneRecursive(Node* node, int tol);
 
+   
    bool twoDtree::checkTol(Node* node, RGBAPixel avg, int tol){
 
    /**

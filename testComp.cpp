@@ -103,8 +103,11 @@ TEST_CASE("twoDtree::basic prune","[weight=1][part=twoDtree]"){
 
     PNG expected; 
     expected.readFromFile("images/given-adaPrune.png");
+    out.writeToFile(images/prune_out.png)
 
     REQUIRE(expected==result);
+
+    cout << "basic prune passed" << endl;
 }
 
 TEST_CASE("twoDtree::basic pruneSize","[weight=1][part=twoDtree]"){
