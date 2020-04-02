@@ -109,7 +109,7 @@ PNG twoDtree::render(){
 
 void twoDtree::renderRecursive(PNG &pic, Node * node){
 	#if DEBUG 
-		cout<<"width: "<< (*pic).width() << " height: " << (*pic).height() << endl; 
+		cout<<"width: "<< pic.width() << " height: " << pic.height() << endl; 
 	#endif
 	if (node->left == NULL && node->right == NULL){
 		for(int x = node->upLeft.first; x <= node->lowRight.first; x++){
