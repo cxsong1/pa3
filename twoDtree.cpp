@@ -127,7 +127,7 @@ void twoDtree::renderRecursive(PNG &pic, Node * node){
 }
 
 int twoDtree::idealPrune(int leaves){
-	return idealPruneRecursive(leaves, 0, 255*255*3);
+	return idealPruneRecursive(leaves, -1, 255*255*3+1);
 }
 
 int twoDtree::idealPruneRecursive(int leaves, int min, int max){
