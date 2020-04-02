@@ -173,10 +173,14 @@ void twoDtree::copyRecursive(Node * curr, const Node * other){
 
 		if(other->left != NULL){
 			copyRecursive(curr->left, other->left);
+		} else {
+			curr->left = NULL;
 		}
 		
 		if(other->right != NULL){
 			copyRecursive(curr->right, other->right); 
+		} else {
+			curr->right = NULL;
 		}
 	}
 }
