@@ -126,7 +126,7 @@ void twoDtree::renderRecursive(PNG &pic, Node * node){
 		renderRecursive(pic, node->left);
 		renderRecursive(pic, node->right); 
 	}
-}d
+}
 
 int twoDtree::idealPrune(int leaves){
 
