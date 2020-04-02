@@ -199,7 +199,7 @@ private:
     * Second recursive helper function for prune. Compares the 
     * 
    */
-   bool checkTol(Node* node, RGBAPixel avg, int tol){
+   bool checkTol(Node* node, RGBAPixel avg, int tol);
 
    /**
     * Recursive helper function for render() function that renders
