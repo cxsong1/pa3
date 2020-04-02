@@ -40,7 +40,7 @@ twoDtree::twoDtree(PNG & imIn){
 	stats s(imIn);
 	width = imIn.width();
 	height = imIn.height();
-	root = buildTree(s,pair<int, int>(0,0), pair<int,int>(width-1,height-1), false);
+	root = buildTree(s,pair<int, int>(0,0), pair<int,int>(width-1,height-1), true);
 }
 
 twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> lr, bool vert) {
@@ -61,13 +61,12 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 
 	long minVar = INT_MAX;
 	int minVarSplit = 0;
-	int minVarSize = 0;
 	if((vert && (ul.first != lr.first)) || (ul.second == lr.second) ){
 		for(int i = ul.first; i < lr.first; i++){
-			if( abs(s.getScore(ul, pair<int,int>(i,lr.second)) - 
+			if( abs(s.getScore(ul, pair<int,int>(i,lr.second)) + 
 					s.getScore(pair<int, int> (i+1, ul.second), lr)) < minVar){
 						
-				minVar = abs(s.getScore(ul, pair<int,int>(i,lr.second)) - 
+				minVar = abs(s.getScore(ul, pair<int,int>(i,lr.second)) + 
 							s.getScore(pair<int, int> (i+1, ul.second), lr));
 				minVarSplit = i;
 			}
@@ -78,12 +77,12 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 		
 		return returnNode;
 	
-	} else if (!vert && (ul.second != lr.second) || (ul.first == lr.first) ){
+	} else if ((!vert && (ul.second != lr.second)) || (ul.first == lr.first) ){
 		for(int i = ul.second; i < lr.second; i++){
-			if( abs(s.getScore(ul, pair<int,int>(lr.first, i)) - 
+			if( abs(s.getScore(ul, pair<int,int>(lr.first, i)) + 
 					s.getScore(pair<int,int>(ul.first, i + 1), lr)) < minVar){
 				
-				minVar = abs(s.getScore(ul, pair<int,int>(lr.first, i)) - 
+				minVar = abs(s.getScore(ul, pair<int,int>(lr.first, i)) + 
 							s.getScore(pair<int,int>(ul.first, i + 1), lr));
 				minVarSplit = i; 
 			}
