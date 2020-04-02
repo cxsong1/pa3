@@ -120,6 +120,8 @@ TEST_CASE("twoDtree::basic pruneSize","[weight=1][part=twoDtree]"){
     int expected = 13904;
 
     REQUIRE(expected==result);
+    cout << "basic pruneSize passed" << endl;
+
 }
 
 TEST_CASE("twoDtree::basic idealPrune","[weight=1][part=twoDtree]"){
@@ -132,4 +134,5 @@ TEST_CASE("twoDtree::basic idealPrune","[weight=1][part=twoDtree]"){
     int expected = 2998;
 
     REQUIRE(expected==result);
+    cout << "basic idealPrune passed" << endl;
 }

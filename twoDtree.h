@@ -198,6 +198,14 @@ private:
    bool checkTol(Node* node, RGBAPixel avg, int tol);
 
    /**
+    * Recursive helper function for pruneSize
+    * 
+    * @param node: the node to check size below
+    * @param tol: the tolerance of the prune
+    */
+   int pruneSizeRecursive(Node* node, int tol);
+
+   /**
     * Recursive helper function for render() function that renders
     * all nodes under 'node' into pic
     * 

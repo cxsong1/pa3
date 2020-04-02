@@ -59,15 +59,15 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 		return returnNode;
 	}
 
-	long minVar = INT_MAX;
+	long minVar = LONG_MAX;
 	int minVarSplit = 0;
 	if((vert && (ul.first != lr.first)) || (ul.second == lr.second) ){
 		for(int i = ul.first; i < lr.first; i++){
-			if( abs(s.getScore(ul, pair<int,int>(i,lr.second)) + 
-					s.getScore(pair<int, int> (i+1, ul.second), lr)) < minVar){
+			if( s.getScore(ul, pair<int,int>(i,lr.second)) + 
+					s.getScore(pair<int, int> (i+1, ul.second), lr) <= minVar){
 						
-				minVar = abs(s.getScore(ul, pair<int,int>(i,lr.second)) + 
-							s.getScore(pair<int, int> (i+1, ul.second), lr));
+				minVar = s.getScore(ul, pair<int,int>(i,lr.second)) + 
+							s.getScore(pair<int, int> (i+1, ul.second), lr);
 				minVarSplit = i;
 			}
 		}
@@ -79,11 +79,11 @@ twoDtree::Node * twoDtree::buildTree(stats & s, pair<int,int> ul, pair<int,int> 
 	
 	} else if ((!vert && (ul.second != lr.second)) || (ul.first == lr.first) ){
 		for(int i = ul.second; i < lr.second; i++){
-			if( abs(s.getScore(ul, pair<int,int>(lr.first, i)) + 
-					s.getScore(pair<int,int>(ul.first, i + 1), lr)) < minVar){
+			if( s.getScore(ul, pair<int,int>(lr.first, i)) + 
+					s.getScore(pair<int,int>(ul.first, i + 1), lr) <= minVar){
 				
-				minVar = abs(s.getScore(ul, pair<int,int>(lr.first, i)) + 
-							s.getScore(pair<int,int>(ul.first, i + 1), lr));
+				minVar = s.getScore(ul, pair<int,int>(lr.first, i)) + 
+							s.getScore(pair<int,int>(ul.first, i + 1), lr);
 				minVarSplit = i; 
 			}
 		}
@@ -127,21 +127,36 @@ void twoDtree::renderRecursive(PNG &pic, Node * node){
 }
 
 int twoDtree::idealPrune(int leaves){
-
-// YOUR CODE HERE!!
-
+	int currTol = 380;
+	int currNum;
+	
+	while(currTol > 0 && currTol < 255*255*3+1){
+		currNum = pruneSize(currTol);
+		if (currNum == leaves) return currTol;
+		else{
+			currTol = (currNum < leaves) ? (currTol / 2) : (currTol * 2);
+		}
+	}
+	cout << "LMAO NOT POSSIBLE" << endl;
+	return -1;
 }
 
 int twoDtree::pruneSize(int tol){
     
-// YOUR CODE HERE!!
+return pruneSizeRecursive(root, tol); 
+}
 
+int twoDtree::pruneSizeRecursive(Node* node, int tol){
+	if (node == NULL || (node->right == NULL && node->left == NULL) ) return 1; 
+	if (checkTol(node, node->avg, tol)){
+		return 1; 
+	} else {
+		return pruneSizeRecursive(node->left, tol) + pruneSizeRecursive(node->right, tol);
+	}
 }
 
 void twoDtree::prune(int tol){
 	pruneRecursive(root, tol);
-// YOUR CODE HERE!!
-
 }
 
 void twoDtree::pruneRecursive(Node* node, int tol){
