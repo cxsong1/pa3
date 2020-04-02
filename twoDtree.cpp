@@ -134,7 +134,9 @@ int twoDtree::idealPrune(int leaves){
 }
 
 int twoDtree::idealPruneRecursive(int leaves, int min, int max){
+	#if DEBUG
 	cout << "tolerance: " << ((min+max)/2) << endl;
+	#endif
 	if(pruneSize((min + max)/2) == leaves){
 		return (min + max) / 2;
 	}else if (pruneSize((min + max) / 2) < leaves){
