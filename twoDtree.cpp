@@ -138,9 +138,9 @@ int twoDtree::idealPruneRecursive(int leaves, int min, int max){
 	if(pruneSize((min + max)/2) == leaves){
 		return (min + max) / 2;
 	}else if (pruneSize((min + max) / 2) < leaves){
-		return idealPruneRecursive(leaves, min, ((min + max) / 2));
+		return idealPruneRecursive(leaves, min, ((min + max) / 2) - 1);
 	}else if (pruneSize((min + max) / 2) > leaves){
-		return idealPruneRecursive(leaves, ((min + max) / 2), max);
+		return idealPruneRecursive(leaves, ((min + max) / 2) + 1, max);
 	}
 }
 
