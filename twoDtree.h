@@ -193,10 +193,13 @@ private:
     * @param node: the current node to check
     * @param tol: the accepted tolerance
     */
-   void twoDtree::pruneRecursive(Node* node, int tol);
+   void pruneRecursive(Node* node, int tol);
 
-   
-   bool twoDtree::checkTol(Node* node, RGBAPixel avg, int tol){
+   /**
+    * Second recursive helper function for prune. Compares the 
+    * 
+   */
+   bool checkTol(Node* node, RGBAPixel avg, int tol){
 
    /**
     * Recursive helper function for render() function that renders
