@@ -195,7 +195,7 @@ private:
     * Second recursive helper function for prune. Compares the 
     * 
    */
-   bool checkTol(Node* node, RGBAPixel avg, int tol);
+   bool checkTol(Node* node, RGBAPixel &avg, int tol);
 
    int idealPruneRecursive(int leaves, int min, int max);
 
