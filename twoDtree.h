@@ -164,6 +164,9 @@ public:
    /* =============== end of public PA3 FUNCTIONS =========================*/
 
 private:
+
+
+
    /*
     * Private member variables.
     *
@@ -178,6 +181,41 @@ private:
 
    /* =================== private PA3 functions ============== */
 
+
+   /**
+    * First recursive helper function for prune. Calls checkTol 
+    * and clears the nodes that are within tolerance of current
+    * node's average. 
+    * @param node: the current node to check
+    * @param tol: the accepted tolerance
+    */
+   void pruneRecursive(Node* node, int tol);
+
+   /**
+    * Second recursive helper function for prune. Compares the 
+    * 
+   */
+   bool checkTol(Node* node, RGBAPixel avg, int tol);
+
+   int idealPruneRecursive(int leaves, int min, int max);
+
+   /**
+    * Recursive helper function for pruneSize
+    * 
+    * @param node: the node to check size below
+    * @param tol: the tolerance of the prune
+    */
+   int pruneSizeRecursive(Node* node, int tol);
+
+   /**
+    * Recursive helper function for render() function that renders
+    * all nodes under 'node' into pic
+    * 
+    * @param pic: the destination PNG of the render
+    * @param node: the root of the tree to start rendering at
+    */
+   void renderRecursive(PNG &pic, Node * node);
+
    /**
     * Destroys all dynamically allocated memory associated with the
     * current twoDtree class. Complete for PA3.
@@ -186,12 +224,31 @@ private:
    void clear();
 
    /**
+    * Recursive helper function for clear() function that destroys all
+    * nodes under 'node'.
+    * 
+    * @param node the root of the tree to be deallocated
+    */
+   void clearRecursive(Node* node);
+
+   /**
    * Copies the parameter other twoDtree into the current twoDtree.
    * Does not free any memory. Called by copy constructor and op=.
    * You may want a recursive helper function for this one.
    * @param other The twoDtree to be copied.
    */
    void copy(const twoDtree & other);
+
+
+   /**
+    * Recursive helper function for copy() function that copies
+    * all nodes under 'other' into nodes under 'this'
+    * 
+    * @param curr root of destination tree
+    * @param other root of source tree
+    */
+   void copyRecursive(Node **curr, const Node * other);
+
 
    /**
    * Private helper function for the constructor. Recursively builds

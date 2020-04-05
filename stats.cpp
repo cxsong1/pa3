@@ -11,6 +11,7 @@ stats::stats(PNG & im){
         sumsqRed.push_back( vector<long>() );
         sumsqGreen.push_back( vector<long>() );
         sumsqBlue.push_back( vector<long>() );
+
         for(unsigned int y = 0; y < im.height(); y++){
             #if DEBUG
                 cout << "constructor: " << x << " " << y << endl;

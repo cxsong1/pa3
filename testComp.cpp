@@ -69,12 +69,12 @@ TEST_CASE("stats::basic variance","[weight=1][part=stats]"){
 TEST_CASE("twoDtree::basic ctor render","[weight=1][part=twoDtree]"){
     PNG img;
     img.readFromFile("images/geo.png");
-
     twoDtree t1(img);
-
     PNG out = t1.render();
-
+    out.writeToFile("images/ctor_out.png");
     REQUIRE(out==img);
+
+    cout << "basic ctor render passed" << endl;
 }
 
 
@@ -86,8 +86,11 @@ TEST_CASE("twoDtree::basic copy","[weight=1][part=twoDtree]"){
     twoDtree t1copy(t1);
 
     PNG out = t1copy.render();
+    out.writeToFile("images/copy_out.png");
 
     REQUIRE(out==img);
+
+    cout << "basic copy passed" << endl;
 }
 
 TEST_CASE("twoDtree::basic prune","[weight=1][part=twoDtree]"){
@@ -100,8 +103,11 @@ TEST_CASE("twoDtree::basic prune","[weight=1][part=twoDtree]"){
 
     PNG expected; 
     expected.readFromFile("images/given-adaPrune.png");
+    result.writeToFile("images/prune_out.png");
 
     REQUIRE(expected==result);
+
+    cout << "basic prune passed" << endl;
 }
 
 TEST_CASE("twoDtree::basic pruneSize","[weight=1][part=twoDtree]"){
@@ -114,6 +120,8 @@ TEST_CASE("twoDtree::basic pruneSize","[weight=1][part=twoDtree]"){
     int expected = 13904;
 
     REQUIRE(expected==result);
+    cout << "basic pruneSize passed" << endl;
+
 }
 
 TEST_CASE("twoDtree::basic idealPrune","[weight=1][part=twoDtree]"){
@@ -126,4 +134,5 @@ TEST_CASE("twoDtree::basic idealPrune","[weight=1][part=twoDtree]"){
     int expected = 2998;
 
     REQUIRE(expected==result);
+    cout << "basic idealPrune passed" << endl;
 }
