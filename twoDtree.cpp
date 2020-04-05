@@ -141,7 +141,7 @@ int twoDtree::idealPruneRecursive(int leaves, int min, int max){
 		return (min + max) / 2;
 	}else if (pruneSize((min + max) / 2) < leaves){
 		return idealPruneRecursive(leaves, min, ((min + max) / 2) - 1);
-	}else if (pruneSize((min + max) / 2) > leaves){
+	}else{
 		return idealPruneRecursive(leaves, ((min + max) / 2) + 1, max);
 	}
 }
@@ -164,7 +164,7 @@ void twoDtree::prune(int tol){
 	pruneRecursive(root, tol);
 }
 
-void twoDtree::pruneRecursive(Node* node, int tol){
+void twoDtree::pruneRecursive(Node* node, int &tol){
 	if (node == NULL || (node->right == NULL && node->left == NULL) ) return;
 	if (checkTol(node, node->avg, tol)){
 		clearRecursive(node->left);
@@ -179,7 +179,7 @@ void twoDtree::pruneRecursive(Node* node, int tol){
 
 }
 
-bool twoDtree::checkTol(Node* node, RGBAPixel &avg, int tol){
+bool twoDtree::checkTol(Node* node, RGBAPixel &avg, int &tol){
 	if (node->left == NULL && node->right == NULL){
 		return (
 			(node->avg.r-avg.r)*(node->avg.r-avg.r) + (node->avg.g-avg.g)*(node->avg.g-avg.g) + (node->avg.b-avg.b)*(node->avg.b-avg.b) <= tol
