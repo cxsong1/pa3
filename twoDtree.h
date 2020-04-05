@@ -197,7 +197,7 @@ private:
    */
    bool checkTol(Node* node, RGBAPixel avg, int tol);
 
-   int idealPruneRecursive(const int &leaves, const int &min, const int &max);
+   int idealPruneRecursive(int leaves, int min, int max);
 
    /**
     * Recursive helper function for pruneSize
@@ -205,7 +205,7 @@ private:
     * @param node: the node to check size below
     * @param tol: the tolerance of the prune
     */
-   int pruneSizeRecursive(Node* node, int &tol);
+   int pruneSizeRecursive(Node* node, int tol);
 
    /**
     * Recursive helper function for render() function that renders
