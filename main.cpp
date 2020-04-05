@@ -40,9 +40,13 @@ int main()
 
 	// prune the twoDtree
 	tCopy1.prune(10000); 
+	cout << "prune 1" << endl;
 	tCopy2.prune(10000); 
+	cout << "prune 2" << endl;
 	tCopy3.prune(3000); 
+	cout << "prune 3" << endl;
 	tCopy4.prune(3000);
+	cout << "prune 4" << endl;
 	
 	// render the twoDtree
 	PNG ppic1 = tCopy1.render();
