@@ -197,7 +197,7 @@ private:
    */
    bool checkTol(Node* node, RGBAPixel &avg, int &tol);
 
-   int idealPruneRecursive(const int &leaves, const int &min, const int &max);
+   //int idealPruneRecursive(const int &leaves, const int &min, const int &max);
 
    /**
     * Recursive helper function for pruneSize
