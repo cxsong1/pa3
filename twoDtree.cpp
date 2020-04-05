@@ -126,9 +126,9 @@ void twoDtree::renderRecursive(PNG &pic, Node * node){
 	}
 }
 
-/*int twoDtree::idealPrune(int leaves){
+int twoDtree::idealPrune(int leaves){
 	int tol = idealPruneRecursive(leaves, 0, 255*255*3+1);
-	for(;tol >= 0 && pruneSize(tol-1)==leaves; --tol);
+	for(;tol > 0 && pruneSize(tol-1)==leaves; --tol);
 	return tol;
 	
 }
@@ -146,8 +146,8 @@ int twoDtree::idealPruneRecursive(const int &leaves, const int &min, const int &
 	}else{
 		return idealPruneRecursive(leaves, ((min + max) / 2) + 1, max);
 	}
-}*/
-int twoDtree::idealPrune(int leaves){
+}
+/*int twoDtree::idealPrune(int leaves){
 	int tol_min = 0; 
 	int tol_max = 1000000; 
 	int curr = tol_max/2;  
@@ -171,7 +171,7 @@ int twoDtree::idealPrune(int leaves){
 			return curr; 
 		}
 	}
-}
+}*/
 
 int twoDtree::pruneSize(int tol){
     
