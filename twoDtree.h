@@ -189,13 +189,13 @@ private:
     * @param node: the current node to check
     * @param tol: the accepted tolerance
     */
-   void pruneRecursive(Node* node, int tol);
+   void pruneRecursive(Node* node, int &tol);
 
    /**
     * Second recursive helper function for prune. Compares the 
     * 
    */
-   bool checkTol(Node* node, RGBAPixel &avg, int tol);
+   bool checkTol(Node* node, RGBAPixel &avg, int &tol);
 
    int idealPruneRecursive(int leaves, int min, int max);
 
