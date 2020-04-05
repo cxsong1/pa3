@@ -165,15 +165,18 @@ void twoDtree::prune(int tol){
 }
 
 void twoDtree::pruneRecursive(Node* node, int tol){
-	if (node == NULL || (node->right == NULL && node->left == NULL) ) return;
+	//if (node == NULL || (node->right == NULL && node->left == NULL) ) return;
 	if (checkTol(node, node->avg, tol)){
 		clearRecursive(node->left);
 		clearRecursive(node->right);
 		node->left = NULL;
 		node->right = NULL;
 		return;
-	} else {
-		pruneRecursive(node->left, tol);
+	}
+	if(root->left != NULL){
+		pruneRecursive(root->left, tol);
+	}
+	if(root->right != NULL){
 		pruneRecursive(node->right, tol);
 	}
 
