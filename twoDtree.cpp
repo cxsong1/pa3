@@ -133,7 +133,7 @@ int twoDtree::idealPrune(int leaves){
 	
 }
 
-int twoDtree::idealPruneRecursive(int leaves, int min, int max){
+int twoDtree::idealPruneRecursive(const int &leaves, const int &min, const int &max){
 	#if DEBUG
 	cout << "tolerance: " << ((min+max)/2) << endl;
 	#endif
@@ -151,7 +151,7 @@ int twoDtree::pruneSize(int tol){
 return pruneSizeRecursive(root, tol); 
 }
 
-int twoDtree::pruneSizeRecursive(Node* node, int tol){
+int twoDtree::pruneSizeRecursive(Node* node, int &tol){
 	if (node == NULL || (node->right == NULL && node->left == NULL) ) return 1; 
 	if (checkTol(node, node->avg, tol)){
 		return 1; 
