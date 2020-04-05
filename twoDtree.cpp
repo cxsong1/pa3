@@ -172,10 +172,9 @@ void twoDtree::pruneRecursive(Node* node, int tol){
 		node->left = NULL;
 		node->right = NULL;
 		return;
-	}else{
-		pruneRecursive(root->left, tol);
-		pruneRecursive(node->right, tol);
 	}
+	pruneRecursive(root->left, tol);
+	pruneRecursive(node->right, tol);
 }
 
 bool twoDtree::checkTol(Node* node, RGBAPixel avg, int tol){
