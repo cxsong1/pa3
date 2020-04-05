@@ -128,7 +128,7 @@ void twoDtree::renderRecursive(PNG &pic, Node * node){
 
 int twoDtree::idealPrune(int leaves){
 	int tol = idealPruneRecursive(leaves, 0, 255*255*3+1);
-	for(;pruneSize(tol-1)==leaves; --tol);
+	for(;tol >= 0 && pruneSize(tol-1)==leaves; --tol);
 	return tol;
 	
 }
@@ -137,6 +137,8 @@ int twoDtree::idealPruneRecursive(const int &leaves, const int &min, const int &
 	#if DEBUG
 	cout << "tolerance: " << ((min+max)/2) << endl;
 	#endif
+	if (min == max)
+		return min;
 	if(pruneSize((min + max)/2) == leaves){
 		return (min + max) / 2;
 	}else if (pruneSize((min + max) / 2) < leaves){
